@@ -7,8 +7,7 @@ type TaskProps = {
 
 const Task: React.FC<TaskProps> = ({ task, onDelete }) => (
     <div>
-        {task}
-        <button onClick={() => onDelete(task)}>Delete</button>
+        {task}&nbsp;<button onClick={() => onDelete(task)}>Delete</button>
     </div>
 )
 
