@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTasks } from '../context/TaskContext';
 import useLocalStorage from '../hooks/useLocalStorage';
 import TaskList from './TaskList';
@@ -5,10 +6,17 @@ import TaskList from './TaskList';
 const TaskContainer: React.FC = () => {
     const { state, dispatch } = useTasks();
     const [tasks, setTasks] = useLocalStorage('tasks', state);
+    const [newTask, setNewTask] = useState<string>('');
   
-    const addTask = (task: string) => {
-      dispatch({ type: 'ADD_TASK', payload: task });
-      setTasks([...tasks, task]);
+    const addTask = () => {
+        if(newTask.trim() === '') {
+            console.error('Please enter a task');
+            return;
+        }
+
+        dispatch({ type: 'ADD_TASK', payload: newTask });
+        setTasks([...tasks, newTask]);
+        setNewTask('');
     }
   
     const deleteTask = (task: string) => {
@@ -18,6 +26,13 @@ const TaskContainer: React.FC = () => {
   
     return (
         <div>
+            <input
+                type='text'
+                placeholder='Add a new task...'
+                value={newTask}
+                onChange={(e) => setNewTask(e.target.value)}
+                />
+            <button onClick={addTask}>Add New Task</button>
             <TaskList tasks={tasks} onDelete={deleteTask} />
         </div>
     )

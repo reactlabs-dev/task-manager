@@ -1,5 +1,5 @@
 import React from 'react';
-import { TaskProvider, useTasks } from './context/TaskContext';
+import { TaskProvider } from './context/TaskContext';
 import TaskContainer from './components/TaskContainer';
 import './App.css';
 
