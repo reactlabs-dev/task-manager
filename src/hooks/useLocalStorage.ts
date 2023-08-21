@@ -11,7 +11,6 @@ function useLocalStorage<T>(key: string, initialValue: T) {
 
     // return a wrapped version of useState's setter function
     // that persists the new value to localStorage
-    
     const setStoredValue = (valueToStore: T) => {
         setValue(valueToStore);
         localStorage.setItem(key, JSON.stringify(valueToStore));

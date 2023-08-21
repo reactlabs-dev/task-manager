@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, ReactNode } from 'react';
+import React, { createContext, useContext, useReducer } from 'react';
 
 type ActionType = {
     type: 'ADD_TASK' | 'DELETE_TASK';
